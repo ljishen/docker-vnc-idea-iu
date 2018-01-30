@@ -12,7 +12,8 @@
    ./run
    ```
 
-3. Connect to the remote host via VNC viewer
+3. Connect to the remote host via any VNC viewer
+
    `[HOST_IP]:5901`, default password: `vncpassword`
 
 4. Launch IntelliJ IDEA via command line
