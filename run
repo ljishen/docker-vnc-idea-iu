@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -eu
+
+mkdir -p $HOME/.IntelliJIdea2017.3 $HOME/.gradle $HOME/.java $HOME/IdeaProjects
+docker run \
+       --user $(id -u):$(id -g) \
+       -v $HOME/ideaUI:/headless/ideaUI \
+       -v $HOME/.IntelliJIdea2017.3:/headless/.IntelliJIdea2017.3 \
+       -v $HOME/.gradle:/headless/.gradle \
+       -v $HOME/.java:/headless/.java \
+       -v $HOME/IdeaProjects:/headless/IdeaProjects \
+       -p 5901:5901 \
+       -p 6901:6901 \
+       ljishen/docker-vnc-ideaui
