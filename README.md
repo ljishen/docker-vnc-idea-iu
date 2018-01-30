@@ -2,7 +2,7 @@
 
 ## Usage
 
-1. Download and extract the IntelliJ IDEA tarball
+1. Download and extract the [IntelliJ IDEA tarball](https://www.jetbrains.com/idea/download/#section=linux)
    ```bash
    mkdir $HOME/ideaUI && tar -xf ideaIU-XXXX.X.X.tar.gz --strip 1 -C $HOME/ideaUI
    ```
