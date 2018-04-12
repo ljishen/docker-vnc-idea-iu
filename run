@@ -2,11 +2,13 @@
 
 set -eu
 
-mkdir -p $HOME/.IntelliJIdea2018.1 $HOME/.gradle $HOME/.java $HOME/IdeaProjects
+CONFIG_FOLDER=.$(grep -oP 'idea.paths.selector=\K[\w\.\d]+' "$HOME"/ideaUI/bin/idea.sh)
+
+mkdir -p $HOME/$CONFIG_FOLDER $HOME/.gradle $HOME/.java $HOME/IdeaProjects
 docker run \
        --user $(id -u):$(id -g) \
        -v $HOME/ideaUI:/headless/ideaUI \
-       -v $HOME/.IntelliJIdea2018.1:/headless/.IntelliJIdea2018.1 \
+       -v $HOME/$CONFIG_FOLDER:/headless/$CONFIG_FOLDER \
        -v $HOME/.gradle:/headless/.gradle \
        -v $HOME/.java:/headless/.java \
        -v $HOME/IdeaProjects:/headless/IdeaProjects \
