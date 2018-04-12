@@ -4,14 +4,14 @@ set -eu
 
 CONFIG_FOLDER=.$(grep -oP 'idea.paths.selector=\K[\w\.\d]+' "$HOME"/ideaUI/bin/idea.sh)
 
-mkdir -p $HOME/$CONFIG_FOLDER $HOME/.gradle $HOME/.java $HOME/IdeaProjects
-docker run \
+mkdir -p "$HOME"/"$CONFIG_FOLDER" "$HOME"/.gradle "$HOME"/.java "$HOME"/IdeaProjects
+docker run --rm \
        --user $(id -u):$(id -g) \
-       -v $HOME/ideaUI:/headless/ideaUI \
-       -v $HOME/$CONFIG_FOLDER:/headless/$CONFIG_FOLDER \
-       -v $HOME/.gradle:/headless/.gradle \
-       -v $HOME/.java:/headless/.java \
-       -v $HOME/IdeaProjects:/headless/IdeaProjects \
+       -v "$HOME"/ideaUI:/headless/ideaUI \
+       -v "$HOME"/"$CONFIG_FOLDER":/headless/"$CONFIG_FOLDER" \
+       -v "$HOME"/.gradle:/headless/.gradle \
+       -v "$HOME"/.java:/headless/.java \
+       -v "$HOME"/IdeaProjects:/headless/IdeaProjects \
        -p 5901:5901 \
        -p 6901:6901 \
        ljishen/docker-vnc-ideaui
