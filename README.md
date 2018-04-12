@@ -16,7 +16,16 @@
 
    `[HOST_IP]:5901`, default password: `vncpassword`
 
+   You can also connect via browsing
+
+   `http://[HOST_IP]:6901/vnc.html`, default password: `vncpassword`
+
 4. Launch IntelliJ IDEA via command line
    ```bash
    idea.sh
    ```
+
+
+### Credit
+
+- More configurations and options can be found from [docker-headless-vnc-container](https://github.com/ConSol/docker-headless-vnc-container)

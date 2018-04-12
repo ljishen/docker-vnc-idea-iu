@@ -1,6 +1,6 @@
 FROM consol/ubuntu-xfce-vnc
 MAINTAINER Jianshen Liu "jliu120@ucsc.edu"
-ENV REFRESHED_AT 2018-01-29
+ENV REFRESHED_AT 2018-04-12
 
 USER 0
 
@@ -17,6 +17,6 @@ RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ## switch back to default user
-USER 1984
+USER 1000
 
 ENV PATH=$PATH:/headless/ideaUI/bin

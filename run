@@ -2,11 +2,11 @@
 
 set -eu
 
-mkdir -p $HOME/.IntelliJIdea2017.3 $HOME/.gradle $HOME/.java $HOME/IdeaProjects
+mkdir -p $HOME/.IntelliJIdea2018.1 $HOME/.gradle $HOME/.java $HOME/IdeaProjects
 docker run \
        --user $(id -u):$(id -g) \
        -v $HOME/ideaUI:/headless/ideaUI \
-       -v $HOME/.IntelliJIdea2017.3:/headless/.IntelliJIdea2017.3 \
+       -v $HOME/.IntelliJIdea2018.1:/headless/.IntelliJIdea2018.1 \
        -v $HOME/.gradle:/headless/.gradle \
        -v $HOME/.java:/headless/.java \
        -v $HOME/IdeaProjects:/headless/IdeaProjects \
