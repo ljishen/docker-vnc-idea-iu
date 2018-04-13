@@ -19,3 +19,5 @@ RUN apt-get clean \
 USER 1000
 
 ENV PATH=$PATH:/headless/ideaUI/bin
+
+RUN printf "\\n\\n# Startup Program\\nidea.sh &> %s/idea_startup.log &" "$STARTUPDIR" >> "$HOME"/wm_startup.sh
