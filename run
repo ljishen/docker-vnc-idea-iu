@@ -2,13 +2,18 @@
 
 set -eu
 
-CONFIG_FOLDER=.$(grep -oP 'idea.paths.selector=\K[\w\.\d]+' "$HOME"/ideaUI/bin/idea.sh)
+PLATFORM_FOLDER=.$(grep -oP 'idea.paths.selector=\K[\w\.\d]+' "$HOME"/ideaUI/bin/idea.sh)
 
-mkdir -p "$HOME"/"$CONFIG_FOLDER" "$HOME"/.gradle "$HOME"/.java "$HOME"/IdeaProjects
+mkdir -p \
+    "$HOME"/"$PLATFORM_FOLDER" \
+    "$HOME"/.gradle \
+    "$HOME"/.java \
+    "$HOME"/IdeaProjects
+
 docker run --rm \
        --user $(id -u):$(id -g) \
        -v "$HOME"/ideaUI:/headless/ideaUI \
-       -v "$HOME"/"$CONFIG_FOLDER":/headless/"$CONFIG_FOLDER" \
+       -v "$HOME"/"$PLATFORM_FOLDER":/headless/"$PLATFORM_FOLDER" \
        -v "$HOME"/.gradle:/headless/.gradle \
        -v "$HOME"/.java:/headless/.java \
        -v "$HOME"/IdeaProjects:/headless/IdeaProjects \
