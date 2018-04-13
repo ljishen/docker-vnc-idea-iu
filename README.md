@@ -20,7 +20,7 @@
 
    `http://[HOST_IP]:6901/vnc.html`, default password: `vncpassword`
 
-4. Launch IntelliJ IDEA via command line
+4. You should see the IntelliJ IDEA already started on the desktop, otherwise you can launch it via command line
    ```bash
    idea.sh
    ```
