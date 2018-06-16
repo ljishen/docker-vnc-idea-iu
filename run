@@ -11,7 +11,7 @@ mkdir -p \
     "$HOME"/IdeaProjects
 
 docker run --rm \
-       --user $(id -u):$(id -g) \
+       --user "$(id -u)":"$(id -g)" \
        -v "$HOME"/ideaUI:/headless/ideaUI \
        -v "$HOME"/"$PLATFORM_FOLDER":/headless/"$PLATFORM_FOLDER" \
        -v "$HOME"/.gradle:/headless/.gradle \
