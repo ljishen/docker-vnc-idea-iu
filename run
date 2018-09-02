@@ -7,6 +7,7 @@ PLATFORM_FOLDER=.$(grep -oP 'idea.paths.selector=\K[\w\.\d]+' "$HOME"/ideaUI/bin
 mkdir -p \
     "$HOME"/"$PLATFORM_FOLDER" \
     "$HOME"/.gradle \
+    "$HOME"/.m2 \
     "$HOME"/.java \
     "$HOME"/IdeaProjects
 
@@ -15,6 +16,7 @@ docker run --rm \
        -v "$HOME"/ideaUI:/headless/ideaUI \
        -v "$HOME"/"$PLATFORM_FOLDER":/headless/"$PLATFORM_FOLDER" \
        -v "$HOME"/.gradle:/headless/.gradle \
+       -v "$HOME"/.m2:/headless/.m2 \
        -v "$HOME"/.java:/headless/.java \
        -v "$HOME"/IdeaProjects:/headless/IdeaProjects \
        -p 5901:5901 \
