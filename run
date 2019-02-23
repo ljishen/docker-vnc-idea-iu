@@ -2,7 +2,7 @@
 
 set -eu
 
-PLATFORM_FOLDER=.$(grep -oP 'idea.paths.selector=\K[\w\.\d]+' "$HOME"/ideaUI/bin/idea.sh)
+PLATFORM_FOLDER=.$(grep -oP 'idea.paths.selector=\K[\w\.\d]+' "$HOME"/idea-IU/bin/idea.sh)
 
 mkdir -p \
     "$HOME"/"$PLATFORM_FOLDER" \
@@ -12,13 +12,12 @@ mkdir -p \
     "$HOME"/IdeaProjects
 
 docker run --rm \
-       --user "$(id -u)":"$(id -g)" \
-       -v "$HOME"/ideaUI:/headless/ideaUI \
-       -v "$HOME"/"$PLATFORM_FOLDER":/headless/"$PLATFORM_FOLDER" \
-       -v "$HOME"/.gradle:/headless/.gradle \
-       -v "$HOME"/.m2:/headless/.m2 \
-       -v "$HOME"/.java:/headless/.java \
-       -v "$HOME"/IdeaProjects:/headless/IdeaProjects \
-       -p 5901:5901 \
-       -p 6901:6901 \
-       ljishen/docker-vnc-ideaui
+       -v "$HOME"/idea-IU:/root/idea-IU \
+       -v "$HOME"/"$PLATFORM_FOLDER":/root/"$PLATFORM_FOLDER" \
+       -v "$HOME"/.gradle:/root/.gradle \
+       -v "$HOME"/.m2:/root/.m2 \
+       -v "$HOME"/.java:/root/.java \
+       -v "$HOME"/IdeaProjects:/root/IdeaProjects \
+       -p 5900:5900 \
+       -p 6080:80 \
+       ljishen/docker-vnc-ideaiu

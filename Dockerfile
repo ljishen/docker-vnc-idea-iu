@@ -1,9 +1,8 @@
-FROM consol/ubuntu-xfce-vnc
+FROM dorowu/ubuntu-desktop-lxde-vnc
 MAINTAINER Jianshen Liu "jliu120@ucsc.edu"
-ENV REFRESHED_AT 2018-04-12
+ENV REFRESHED_AT 2019-02-23
 
-USER 0
-
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
     apt-get install -y --no-install-recommends software-properties-common git && \
     add-apt-repository ppa:webupd8team/java && \
@@ -15,9 +14,10 @@ RUN apt-get update && \
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-## switch back to default user
-USER 1000
+ENV PATH=$PATH:/root/idea-IU/bin
 
-ENV PATH=$PATH:/headless/ideaUI/bin
+# allow to add startup programs
+RUN sed -i '/openbox/ s/$/ --startup \/etc\/xdg\/openbox\/autostart/' /etc/supervisor/conf.d/supervisord.conf
 
-RUN printf "\\n\\n# Startup Program\\nidea.sh &> %s/idea_startup.log &" "$STARTUPDIR" >> "$HOME"/wm_startup.sh
+# add startup program
+RUN echo "idea.sh &" >> /etc/xdg/openbox/autostart
