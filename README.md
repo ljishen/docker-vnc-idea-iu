@@ -1,4 +1,4 @@
-# docker-vnc-ideaiu
+# docker-vnc-idea-iu
 
 ## Usage
 
