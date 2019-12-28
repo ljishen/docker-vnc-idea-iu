@@ -1,23 +1,29 @@
-FROM dorowu/ubuntu-desktop-lxde-vnc
-MAINTAINER Jianshen Liu "jliu120@ucsc.edu"
-ENV REFRESHED_AT 2019-02-23
+FROM dorowu/ubuntu-desktop-lxde-vnc:bionic
+LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends software-properties-common git && \
-    add-apt-repository ppa:webupd8team/java && \
-    apt-get update && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java8-installer
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name="ljishen/docker-vnc-ideaiu" \
+      org.label-schema.description="Run IntelliJ IDEA from the docker container" \
+      org.label-schema.url="https://github.com/ljishen/docker-vnc-ideaiu" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/ljishen/docker-vnc-ideaiu" \
+      org.label-schema.version=$VERSION \
+      org.label-schema.schema-version="1.0"
 
-## Clean Up
-RUN apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN set -eux; \
+        apt-get update; \
+        apt-get install -y --no-install-recommends \
+        openjdk-8-jdk; \
+        rm -rf /var/lib/apt/lists/*
 
 ENV PATH=$PATH:/root/idea-IU/bin
 
-# allow to add startup programs
-RUN sed -i '/openbox/ s/$/ --startup \/etc\/xdg\/openbox\/autostart/' /etc/supervisor/conf.d/supervisord.conf
+# https://github.com/fcwu/docker-ubuntu-vnc-desktop/issues/85
+ENV OPENBOX_ARGS="--startup /etc/xdg/openbox/autostart"
 
 # add startup program
 RUN echo "idea.sh &" >> /etc/xdg/openbox/autostart
