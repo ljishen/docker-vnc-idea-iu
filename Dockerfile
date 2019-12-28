@@ -6,11 +6,11 @@ ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="ljishen/docker-vnc-ideaiu" \
+      org.label-schema.name="ljishen/docker-vnc-idea-iu" \
       org.label-schema.description="Run IntelliJ IDEA from the docker container" \
-      org.label-schema.url="https://github.com/ljishen/docker-vnc-ideaiu" \
+      org.label-schema.url="https://github.com/ljishen/docker-vnc-idea-iu" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/ljishen/docker-vnc-ideaiu" \
+      org.label-schema.vcs-url="https://github.com/ljishen/docker-vnc-idea-iu" \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0"
 
