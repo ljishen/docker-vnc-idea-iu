@@ -17,7 +17,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN set -eux; \
         apt-get update; \
         apt-get install -y --no-install-recommends \
-        openjdk-8-jdk; \
+        openjdk-8-jdk openjdk-8-source; \
         rm -rf /var/lib/apt/lists/*
 
 ENV PATH=$PATH:/root/idea-IU/bin
